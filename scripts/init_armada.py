@@ -21,8 +21,13 @@ def main():
     current_path = os.path.dirname(os.path.abspath(__file__))
 
     # Create hadlinks to prepared scripts
-    os.link(current_path + '/tools/karmada.sh', '/usr/local/bin/karmada')
-    os.link(current_path + '/tools/sarmada.sh', '/usr/local/bin/sarmada')
+    try:
+        os.link(current_path + '/tools/karmada.sh', '/usr/local/bin/karmada')
+        os.link(current_path + '/tools/sarmada.sh', '/usr/local/bin/sarmada')
+    except OSError, e:
+        if e.error != os.errno.EEXIST:
+            raise
+        pass
 
 
 if __name__ == '__main__':
