@@ -14,6 +14,7 @@ import subprocess
 from urllib.request import urlopen
 from shutil import copyfile
 import grp
+import pwd
 
 def get_kube_config():
     uid = pwd.getpwnam("ubuntu").pw_uid
