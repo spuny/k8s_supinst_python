@@ -24,10 +24,8 @@ def main():
     try:
         os.link(current_path + '/tools/karmada.sh', '/usr/local/bin/karmada')
         os.link(current_path + '/tools/sarmada.sh', '/usr/local/bin/sarmada')
-    except OSError, e:
-        if e.error != os.errno.EEXIST:
-            raise
-        pass
+    except OSError:
+        print('Hardlinks exists, not doing anything')
 
 
 if __name__ == '__main__':
