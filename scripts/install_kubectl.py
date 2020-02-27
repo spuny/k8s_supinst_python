@@ -24,7 +24,6 @@ def main():
     '''
     Main function, downloads kubectl binary and addes executable privileges
     '''
-    get_kube_config()
     exec_path = '/usr/bin/kubectl'
     installer = urlopen("https://storage.googleapis.com/kubernetes-release/release/v1.16.3/bin/linux/amd64/kubectl")
     with open(exec_path,'wb') as output:
@@ -34,4 +33,5 @@ def main():
 
 
 if __name__ == '__main__':
+    get_kube_config()
     main()
