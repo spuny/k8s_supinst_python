@@ -49,8 +49,7 @@ def main():
     proc = subprocess.call
     if which('kubectl'):
         proc(['kubectl', '-n', 'kube-system', 'create', 'serviceaccount', 'tiller'])
-        proc(['kubectl', 'create', 'clusterrolebinding', 'tiller', '--clusterrole',
-           'cluster-admin', '--serviceaccount=kube-system:tiller')
+        proc(['kubectl', 'create', 'clusterrolebinding', 'tiller', '--clusterrole', 'cluster-admin', '--serviceaccount=kube-system:tiller')
         proc(['helm', 'init', '--service-account tiller'])
         proc(['kubectl', 'get', 'pods', '-n', 'kube-system'])
     else:
