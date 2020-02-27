@@ -18,10 +18,10 @@ def main():
         "armada" : "git@github.com:spuny/armada-manifests.git"
     }
     git_folders = {
-            "openstack" : "./openstack-helm",
-            "openstack_infra" : "./openstack-helm-infra",
-            "kubespray" : "./kubespray",
-            "armada" : "./armada-manifests"
+            "openstack" : "../openstack-helm",
+            "openstack_infra" : "../openstack-helm-infra",
+            "kubespray" : "../kubespray",
+            "armada" : "../armada-manifests"
     }
     for i in git_urls:
         print ("Clonning {} repository to {}".format(git_urls[i],
