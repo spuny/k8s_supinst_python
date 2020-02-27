@@ -26,6 +26,8 @@ def main():
     for i in git_urls:
         print ("Clonning {} repository to {}".format(git_urls[i],
             git_folders[i]))
+        if i == "kubespray":
+            Repo.clone_from(git_urls[i], git_folders[i], branch="release-2.11")
         Repo.clone_from(git_urls[i], git_folders[i])
 
 if __name__ == '__main__':
