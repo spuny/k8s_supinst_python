@@ -19,10 +19,10 @@ def main():
     with open(os.environ['HOME'] + '/.bashrc', 'a') as file:
         file.write('alias armada="sudo docker exec -t armada armada"')
     current_path = os.path.dirname(os.path.abspath(__file__))
-    
+
     # Create hadlinks to prepared scripts
-    os.link(current_path + 'karmada.sh', '/usr/local/bin/karmada')
-    os.link(current_path + 'sarmada.sh', '/usr/local/bin/sarmada')
+    os.link(current_path + '/tools/karmada.sh', '/usr/local/bin/karmada')
+    os.link(current_path + '/tools/sarmada.sh', '/usr/local/bin/sarmada')
 
 
 if __name__ == '__main__':
