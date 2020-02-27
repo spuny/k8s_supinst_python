@@ -47,13 +47,14 @@ def main():
 
     # Install tiller pod to enable instalation with helm
     proc = subprocess.call
-    if which('kubectl'):
+    if which('kubectl') and is.file(os.envviron['HOME'] + '/.kube/config'):
         proc(['kubectl', '-n', 'kube-system', 'create', 'serviceaccount', 'tiller'])
-        proc(['kubectl', 'create', 'clusterrolebinding', 'tiller', '--clusterrole', 'cluster-admin', '--serviceaccount=kube-system:tiller')
+        proc('kubectl create clusterrolebinding tiller --clusterrole \
+             cluster-admin --serviceaccount=kube-system:tiller', shell=True)
         proc(['helm', 'init', '--service-account tiller'])
-        proc(['kubectl', 'get', 'pods', '-n', 'kube-system'])
+        proc('kubectl get pods -n kube-system |grep tiller', shell=True)
     else:
-        print("Command kubectl not found!")
+        print("Command kubectl not found! Or you didn't have added config for kuberntes cluster")
 
 if __name__ == '__main__':
     main()
