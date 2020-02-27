@@ -15,7 +15,7 @@ from urllib.request import urlopen
 from shutil import copyfile
 
 def get_kube_config():
-    konfig_path = os.environ(['HOME']) + '/.kube'
+    konfig_path = os.environ['HOME'] + '/.kube'
     os.mkdir(konfig_path)
     copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
     os.chown(konfig_path + '/config', 'ubutnu', 'ubuntu')
