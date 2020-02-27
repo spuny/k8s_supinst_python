@@ -27,6 +27,7 @@ def get_kube_config():
     try:
         print('Creating folder {}'.format(konfig_path))
         os.mkdir(konfig_path)
+        os.chown(konfig_path, uid, gid)
     except OSError:
         print('Folder {} already exists'.format(konfig_path))
 
