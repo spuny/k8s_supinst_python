@@ -17,6 +17,9 @@ import grp
 import pwd
 
 def get_kube_config():
+    '''
+    Function gets kube config file and modes privileges etc
+    '''
     uid = pwd.getpwnam("ubuntu").pw_uid
     gid = grp.getgrnam("ubuntu").gr_gid
     konfig_path = os.environ['HOME'] + '/.kube'
