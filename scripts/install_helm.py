@@ -49,8 +49,7 @@ def main():
     proc = subprocess.call
     if which('kubectl') and is.file(os.envviron['HOME'] + '/.kube/config'):
         proc(['kubectl', '-n', 'kube-system', 'create', 'serviceaccount', 'tiller'])
-        proc('kubectl create clusterrolebinding tiller --clusterrole \
-             cluster-admin --serviceaccount=kube-system:tiller', shell=True)
+        proc('kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller', shell=True)
         proc(['helm', 'init', '--service-account tiller'])
         proc('kubectl get pods -n kube-system |grep tiller', shell=True)
     else:
