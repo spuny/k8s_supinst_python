@@ -20,9 +20,14 @@ def get_kube_config():
     uid = pwd.getpwnam("ubuntu").pw_uid
     gid = grp.getgrnam("ubuntu").gr_gid
     konfig_path = os.environ['HOME'] + '/.kube'
-    os.mkdir(konfig_path)
-    copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
-    os.chown(konfig_path + '/config', uid, gid)
+
+    try:
+        os.mkdir(konfig_path)
+        copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
+        os.chown(konfig_path + '/config', uid, gid)
+    except OSError:
+        print('Folder {} already exists'.format(konfig_path))
+
 
 def main():
     '''
