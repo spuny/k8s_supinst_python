@@ -23,9 +23,9 @@ def main():
     # Run scripts
 
     run(current_path + '/scripts/clone_repos.py')
-    run('sudo ' + current_path + '/scripts/install_kubectl.py')
-    run('sudo ' + current_path + '/scripts/install_helm.py')
-    run('sudo ' + current_path + '/scripts/init_armada.py')
+    run('sudo ' + current_path + '/scripts/install_kubectl.py', shell=True)
+    run('sudo ' + current_path + '/scripts/install_helm.py', shell=True)
+    run('sudo ' + current_path + '/scripts/init_armada.py', shell=True)
 
 
 
