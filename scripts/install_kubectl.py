@@ -22,18 +22,22 @@ def get_kube_config():
     konfig_path = os.environ['HOME'] + '/.kube'
 
     try:
-        os.mkdir(konfig_path)
         print('Creating folder {}'.format(konfig_path))
-        copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
+        os.mkdir(konfig_path)
+    except OSError:
+        print('Folder {} already exists'.format(konfig_path))
+
+    try:
         print('Copying config file')
+        copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
+    except OSError:
+        print('File /etc/kubernetes/admin.conf does not exist')
+
+    try:
         os.chown(konfig_path + '/config', uid, gid)
         print("Done [-OK-]")
     except OSError:
-        print('Folder {} already exists'.format(konfig_path))
-        copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
-        print('Copying config file')
-        os.chown(konfig_path + '/config', uid, gid)
-        print("Done [-OK-]")
+        print('File {} does not exists'.format(konfig_path + '/config'))
 
 
 def main():
