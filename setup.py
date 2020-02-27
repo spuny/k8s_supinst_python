@@ -17,15 +17,15 @@ def main():
     Run other install and init scripts
     '''
     # Declare Popen to alias
-    current_path = os.path.dirname(os.path.abspath(__file__)) 
+    current_path = os.path.dirname(os.path.abspath(__file__))
     run = subprocess.Popen
 
     # Run scripts
 
-    run(current_path + '/scripts/init_armada.py')
     run(current_path + '/scripts/clone_repos.py')
     run(current_path + '/scripts/install_kubectl.py')
     run(current_path + '/scripts/install_helm.py')
+    run(current_path + '/scripts/init_armada.py')
 
 
 
