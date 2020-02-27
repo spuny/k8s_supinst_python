@@ -20,7 +20,7 @@ def main():
     '''
     exec_path = '/usr/bin/kubectl'
     installer = urlopen("https://storage.googleapis.com/kubernetes-release/release/v1.16.3/bin/linux/amd64/kubectl")
-    with opem(exec_path,'wb') as output:
+    with open(exec_path,'wb') as output:
         output.write(installer.read())
     os.chmod(exec_path, 755)
 
