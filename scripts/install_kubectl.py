@@ -13,12 +13,15 @@ import os
 import subprocess
 from urllib.request import urlopen
 from shutil import copyfile
+import grp
 
 def get_kube_config():
+    uid = pwd.getpwnam("ubuntu").pw_uid
+    gid = grp.getgrnam("ubuntu").gr_gid
     konfig_path = os.environ['HOME'] + '/.kube'
     os.mkdir(konfig_path)
     copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
-    os.chown(konfig_path + '/config', 'ubutnu', 'ubuntu')
+    os.chown(konfig_path + '/config', uid, gid)
 
 def main():
     '''
