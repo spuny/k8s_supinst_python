@@ -34,6 +34,7 @@ def main():
 
     # Copy helm instalation script to /tmp
     inst_file = '/tmp/install-helm.sh'
+    print('Get installation script')
     installer = urlopen("https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get")
     with open(inst_file,'wb') as output:
         output.write(installer.read())
@@ -48,6 +49,7 @@ def main():
     # Install tiller pod to enable instalation with helm
     proc = subprocess.call
     if which('kubectl') and is.file(os.envviron['HOME'] + '/.kube/config'):
+        print('Install tiller pod for helm')
         proc(['kubectl', '-n', 'kube-system', 'create', 'serviceaccount', 'tiller'])
         proc('kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller', shell=True)
         proc(['helm', 'init', '--service-account tiller'])
