@@ -36,12 +36,15 @@ def get_kube_config():
         copyfile('/etc/kubernetes/admin.conf', konfig_path + 'config')
     except OSError:
         print('File /etc/kubernetes/admin.conf does not exist')
+        return False
 
     try:
         os.chown(konfig_path + '/config', uid, gid)
         print("Done [-OK-]")
     except OSError:
         print('File {} does not exists'.format(konfig_path + '/config'))
+
+    return True
 
 
 def main():
@@ -57,5 +60,8 @@ def main():
 
 
 if __name__ == '__main__':
-    get_kube_config()
-    main()
+    if get_kube_config():
+        main()
+    else:
+        print("Can't get kube config file, check if you have your kube cluster
+              up and runngin.")
