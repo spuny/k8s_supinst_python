@@ -2,18 +2,18 @@
 * This bundle of scripts solves and almost automates all what i need to prep my openstack lab
 
 
-* Dev - not stable
 * Master - hopefuly stable version of init scripts
 
-- Just rewrited scripts from bash to python from k8s_supervisor_install
--- This one is just for learning
+- Just rewriten scripts from bash to python from k8s_supervisor_install
 
   # Instalation
 I made wrapper that sums it all up and install it for you.
 You can install it by wrapper or use just chunks of this.
 
     # Easy install
+
 ```
    cd <cloned_repo>
+   pip3 isntall -r requirements.txt
    python3 setup.py
 ```
